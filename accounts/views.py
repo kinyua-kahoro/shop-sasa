@@ -3,17 +3,19 @@ from django.http import HttpResponse
 from accounts.models import Customer, Product, Order
 from .forms import OrderForm
 from django.forms import inlineformset_factory
+from accounts.filters import OrderFilter
 
 
 # Create your views here.
 def home(request):
     orders = Order.objects.all()
+    latest_orders = Order.objects.order_by('-date_created')[:5]
     customers = Customer.objects.all()
     total_customers = customers.count()
     total_orders = orders.count()
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
-    context = {'orders': orders, 'customers': customers, 'total_customers': total_customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending}
+    context = {'orders': orders, 'latest_orders':latest_orders , 'customers': customers, 'total_customers': total_customers, 'total_orders': total_orders, 'delivered': delivered, 'pending': pending}
     return render(request, 'accounts/dashboard.html', context)
 
 def products(request):
@@ -24,7 +26,9 @@ def customers(request, pk_customer):
     customer = Customer.objects.get(id =pk_customer)
     orders = customer.order_set.all()
     orders_count = orders.count()
-    context = {'customer': customer, 'orders': orders, 'orders_count': orders_count}
+    orderFilter = OrderFilter(request.GET, queryset=orders)
+    orders = orderFilter.qs
+    context = {'customer': customer, 'orders': orders, 'orders_count': orders_count, 'orderFilter': orderFilter}
     return render(request, 'accounts/customers.html', context)
 
 def createOrder(request, pk_create_order):

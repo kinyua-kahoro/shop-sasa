@@ -35,7 +35,7 @@
                         <th>Update</th>
                         <th>Remove</th>
                     </tr>
-                    {% for order in orders %}
+                    {% for order in latest_orders %}
                         <tr>
                             <td>{{ order.product }}</td>
                             <td>{{ order.date_created }}</td>
