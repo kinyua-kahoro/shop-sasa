@@ -75,23 +75,23 @@ WSGI_APPLICATION = 'shop_sasa.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shop_sasa',
-        'USER': 'root',
-        'PASSWORD': '24edwin309',
-        'HOST': '127.0.0.1',
-        'PORT': '3307',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'shop_sasa',
+#         'USER': 'root',
+#         'PASSWORD': '24edwin309',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3307',
+#     }
+# }
 
 
 # Password validation
