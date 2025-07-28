@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
-    'accounts',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +141,17 @@ STATICFILES_DIRS=[
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# SMTP CONFIGURATION
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kinyuakah006@gmail.com'
+EMAIL_HOST_PASSWORD = 'pzya jusb gqza hoek '  # paste the 16-character app password here
+DEFAULT_FROM_EMAIL = 'kinyuakah006@gmail.com'
+EMAIL_USE_LOCALTIME = True
+PASSWORD_RESET_TIMEOUT = 3600  # optional: 1 hour
+
